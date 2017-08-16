@@ -6,15 +6,12 @@ def answer(s):
     # your code here
     letters = string.lowercase
     mirror = letters[::-1]
-    new = ""
 
-    for char in s:
-        if char in letters:
-            index_in_s = letters.find(char)
-            #s = s.replace(char, mirror[index_in_s])
-            #s = re.sub(char, mirror[index_in_s], s)
-            #print char, " ", mirror[index_in_s]
-            new = new + mirror[index_in_s]
-        else:
-            new = new + char
-    return new
+    def sub(matchobj):
+        i = letters.find(matchobj.group(0))
+        n = mirror[i]
+        return n
+
+    s = re.sub('[a-z]', sub, s)
+
+    return s
